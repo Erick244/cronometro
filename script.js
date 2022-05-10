@@ -9,15 +9,22 @@ function timer(hora, minuto, segundo, ms) {
     const botaoInciar = document.querySelector('[kz-iniciar]');
     botaoInciar.onclick = () => {
         botaoInciar.setAttribute('disabled', null);
+        botaoPausar.removeAttribute('disabled');
+        botaoReset.removeAttribute('disabled');
         inciarTimer();
     }
 
-    document.querySelector('[kz-pausar]').onclick = () => {
+    const botaoPausar = document.querySelector('[kz-pausar]')
+    botaoPausar.onclick = () => {
+        botaoPausar.setAttribute('disabled', null);
         botaoInciar.removeAttribute('disabled');
         stopTimer();
     }
 
-    document.querySelector('[kz-reset]').onclick = () => {
+    const botaoReset = document.querySelector('[kz-reset]')
+    botaoReset.onclick = () => {
+        botaoReset.setAttribute('disabled', null);
+        botaoPausar.setAttribute('disabled', null);
         botaoInciar.removeAttribute('disabled');
         resetTimer();
     }
