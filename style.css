@@ -1,0 +1,56 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: rgb(255, 102, 0);
+    color: white;
+    text-align: center;
+}
+
+button {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: white;
+    color: rgb(255, 102, 0);
+    font-size: 30px;
+    padding: 10px;
+    margin: 40px 20px auto 20px;
+    border: 1px #fff solid;
+    box-shadow: 5px 5px 10px rgba(34, 19, 19, 0.589);
+    transition: all 0.3s;
+}
+
+[disabled] {
+    background-color: #ff6600;
+    color: #fff;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #ff6600;
+    color: white;
+}
+
+button:active {
+    transform: scale(1);
+    box-shadow: none;
+    background-color: #fff;
+    color: #ff6600;
+}
+
+
+.timer-text, span {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 30px;
+    font-size: 70px;
+}
+
+span {
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.ms {
+    font-size: 20px;
+}
