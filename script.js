@@ -3,30 +3,41 @@ function timer(hora, minuto, segundo, ms) {
     const croMinuto = document.querySelector(minuto);
     const croSegundo = document.querySelector(segundo);
     const croMs = document.querySelector(ms);
+    const log = document.querySelector('.log');
 
     let [contMs, contSeg, contMin, contHor, timer] = [0, 0, 0, 0, null];
 
     const botaoInciar = document.querySelector('[kz-iniciar]');
     botaoInciar.onclick = () => {
-        botaoInciar.setAttribute('disabled', null);
-        botaoPausar.removeAttribute('disabled');
-        botaoReset.removeAttribute('disabled');
+        manipularAtributo(botaoInciar, true, 'disabled');
+        manipularAtributo(botaoPausar, false, 'disabled');
+        manipularAtributo(botaoReset, false, 'disabled');
+
         inciarTimer();
     }
 
     const botaoPausar = document.querySelector('[kz-pausar]')
     botaoPausar.onclick = () => {
-        botaoPausar.setAttribute('disabled', null);
-        botaoInciar.removeAttribute('disabled');
+        manipularAtributo(botaoPausar, true, 'disabled')
+        manipularAtributo(botaoInciar, false, 'disabled')
+
+        const newLog = criarP(croHora.innerHTML, croMinuto.innerHTML, croSegundo.innerHTML, croMs.innerHTML);
+        log.appendChild(newLog);
+
         stopTimer();
     }
 
     const botaoReset = document.querySelector('[kz-reset]')
     botaoReset.onclick = () => {
-        botaoReset.setAttribute('disabled', null);
-        botaoPausar.setAttribute('disabled', null);
-        botaoInciar.removeAttribute('disabled');
+        manipularAtributo(botaoReset, true, 'disabled');
+        manipularAtributo(botaoPausar, true, 'disabled');
+        manipularAtributo(botaoInciar, false, 'disabled')
+
         resetTimer();
+    }
+
+    document.querySelector('[kz-clearLog]').onclick = () => {
+        log.innerHTML = null;
     }
 
     function inciarTimer() {
@@ -69,6 +80,18 @@ function timer(hora, minuto, segundo, ms) {
         croMinuto.innerHTML = '00';
         croSegundo.innerHTML = '00';
         croMs.innerHTML = '000';
+    }
+
+    function criarP(textHor, textMin, textSeg, textMs) {
+        const p = document.createElement('p');
+
+        p.innerHTML = `- ${textHor}:${textMin}:${textSeg} <sup>${textMs}<sup/>`;
+        return p;
+    }
+
+    function manipularAtributo(elem, set, atributeName, value=null) {
+        set ? elem.setAttribute(atributeName, value)
+            : elem.removeAttribute(atributeName);
     }
 }
 
