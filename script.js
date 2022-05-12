@@ -3,43 +3,43 @@ function timer(hora, minuto, segundo, ms) {
     const croMinuto = document.querySelector(minuto);
     const croSegundo = document.querySelector(segundo);
     const croMs = document.querySelector(ms);
-    const log = document.querySelector('.log');
-
-    let [contMs, contSeg, contMin, contHor, timer] = [0, 0, 0, 0, null];
-
+    
     const botaoInciar = document.querySelector('[kz-iniciar]');
     botaoInciar.onclick = () => {
         manipularAtributo(botaoInciar, true, 'disabled');
         manipularAtributo(botaoPausar, false, 'disabled');
         manipularAtributo(botaoReset, false, 'disabled');
-
+        
         inciarTimer();
     }
-
+    
+    const log = document.querySelector('.log');
     const botaoPausar = document.querySelector('[kz-pausar]')
     botaoPausar.onclick = () => {
         manipularAtributo(botaoPausar, true, 'disabled')
         manipularAtributo(botaoInciar, false, 'disabled')
-
+        
         const newLog = criarP(croHora.innerHTML, croMinuto.innerHTML, croSegundo.innerHTML, croMs.innerHTML);
         log.appendChild(newLog);
-
+        
         stopTimer();
     }
-
+    
     const botaoReset = document.querySelector('[kz-reset]')
     botaoReset.onclick = () => {
         manipularAtributo(botaoReset, true, 'disabled');
         manipularAtributo(botaoPausar, true, 'disabled');
         manipularAtributo(botaoInciar, false, 'disabled')
-
+        
         resetTimer();
     }
-
+    
     document.querySelector('[kz-clearLog]').onclick = () => {
         log.innerHTML = null;
     }
-
+    
+    let [contMs, contSeg, contMin, contHor, timer] = [0, 0, 0, 0, null];
+    
     function inciarTimer() {
         timer = setInterval(() => {
             if (contMs == 250) {
