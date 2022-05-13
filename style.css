@@ -75,3 +75,7 @@ sup {
     font-size: 15px;
     text-decoration: underline;
 }
+
+[disabled] {
+    cursor: no-drop;
+}
